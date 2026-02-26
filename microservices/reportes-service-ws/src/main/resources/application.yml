@@ -1,0 +1,17 @@
+server:
+  port: 8095
+spring:
+  application:
+    name: reportes-service-ws
+  config:
+    import: optional:configserver:http://localhost:8888
+clients:
+  paciente:
+    url: http://localhost:8091
+  medico:
+    url: http://localhost:8092
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus

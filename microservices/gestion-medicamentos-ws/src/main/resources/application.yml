@@ -1,0 +1,12 @@
+server:
+  port: 8093
+spring:
+  application:
+    name: gestion-medicamentos-ws
+  config:
+    import: optional:configserver:http://localhost:8888
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus

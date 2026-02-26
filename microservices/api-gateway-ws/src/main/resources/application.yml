@@ -1,0 +1,36 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: api-gateway-ws
+  config:
+    import: optional:configserver:http://localhost:8888
+  cloud:
+    gateway:
+      routes:
+        - id: auth
+          uri: http://localhost:8081
+          predicates: [ Path=/auth/** ]
+        - id: paciente
+          uri: http://localhost:8091
+          predicates: [ Path=/api/pacientes/** ]
+        - id: medico
+          uri: http://localhost:8092
+          predicates: [ Path=/api/medicos/** ]
+        - id: medicamentos
+          uri: http://localhost:8093
+          predicates: [ Path=/api/medicamentos/** ]
+        - id: atencion
+          uri: http://localhost:8094
+          predicates: [ Path=/api/atenciones/** ]
+        - id: reportes
+          uri: http://localhost:8095
+          predicates: [ Path=/api/reportes/** ]
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,gateway
+security:
+  jwt:
+    shared-secret: CHANGE_THIS_SECRET_IN_CONFIG_REPO_MIN_32_BYTES

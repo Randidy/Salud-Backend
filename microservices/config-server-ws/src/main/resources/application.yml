@@ -1,0 +1,16 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: config-server-ws
+  cloud:
+    config:
+      server:
+        git:
+          uri: file://${user.home}/saludvital-config-repo
+          default-label: main
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
