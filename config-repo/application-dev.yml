@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/salud
+    username: root
+    password: root
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: saludvital
+    password: saludvital123
+security:
+  jwt:
+    secret: saludvital-super-secret-key-saludvital-2026
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

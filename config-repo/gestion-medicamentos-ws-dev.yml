@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: gestion-medicamentos-ws
+  config:
+    activate:
+      on-profile: dev
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus

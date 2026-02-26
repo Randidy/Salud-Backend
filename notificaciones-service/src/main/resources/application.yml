@@ -1,0 +1,33 @@
+server:
+  port: 8089
+spring:
+  application:
+    name: notificaciones-service
+  config:
+    import: optional:configserver:http://localhost:8888
+  datasource:
+    url: jdbc:mysql://localhost:3306/salud
+    username: root
+    password: root
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: saludvital
+    password: saludvital123
+security:
+  jwt:
+    secret: saludvital-super-secret-key-saludvital-2026
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+resilience4j:
+  circuitbreaker:
+    instances:
+      pacienteService:
+        slidingWindowSize: 10

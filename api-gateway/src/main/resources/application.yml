@@ -1,0 +1,31 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: medicamentos
+          uri: lb://gestion-medicamentos-ws
+          predicates: [ Path=/api/medicamentos/** ]
+        - id: medicos
+          uri: lb://medico-service-ws
+          predicates: [ Path=/api/medicos/** ]
+        - id: auth
+          uri: lb://auth-service-ws
+          predicates: [ Path=/api/auth/** ]
+  config:
+    import: optional:configserver:http://localhost:8888
+security:
+  jwt:
+    secret: saludvital-super-secret-key-saludvital-2026
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
